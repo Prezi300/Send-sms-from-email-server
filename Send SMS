@@ -1,0 +1,24 @@
+#!/bin/python3
+
+import smtplib
+from email.message import EmailMessage
+from providers import PROVIDERS
+import providers
+
+
+def send_sms(subject, body, to, user, password):
+    msg = EmailMessage()
+    msg.set_content(body)
+    msg['subject'] = subject
+    msg['to'] = to
+    msg['from'] = user
+    password = password
+
+    server = smtplib.SMTP("smtp.office365.com", 587)
+    server.starttls()
+    server.login(user, password)
+    server.send_message(msg)
+
+    server.quit()
+
+send_sms(subject, body, '9545555555@mymetropcs.com', email address, email password)
